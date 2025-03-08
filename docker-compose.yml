@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  app:
+    build:
+      dockerfile: Dockerfile.multistage
+      context: .
+      target: ${GO_ENV}
+    container_name: go-app
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      PORT: ${PORT}
+    env_file:
+      - ./.env
+

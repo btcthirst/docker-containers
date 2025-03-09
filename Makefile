@@ -8,6 +8,10 @@ PHONY: run
 run:
 	PORT=${PORT} ./bin/app
 
+PHONY: dbuild
+dbuild:
+	docker build -t go-app:mult -f Dockerfile.multistage .
+
 PHONY: docker-clean
 docker-clean:
 	docker container prune

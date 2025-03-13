@@ -10,7 +10,11 @@ run:
 
 PHONY: dbuild
 dbuild:
-	docker build -t go-app:mult -f Dockerfile.multistage .
+	PORT=${PORT} docker build -t go-app:0.1.1 -f Dockerfile.multistage .
+
+PHONY: drun
+drun:
+	docker run go-app:0.1.0
 
 PHONY: docker-clean
 docker-clean:

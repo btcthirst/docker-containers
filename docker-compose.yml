@@ -1,15 +1,37 @@
 version: '3.8'
 services:
-  app:
+  api:
+    depends_on:
+      - db  
     build:
       dockerfile: Dockerfile.multistage
       context: .
       target: ${GO_ENV}
     container_name: go-app
-    ports:
-      - ${PORT}:${PORT}
-    environment:
-      PORT: ${PORT}
+    hostname: api
+    networks:
+      - mynet
     env_file:
-      - ./.env
+      - .env  
+    ports:
+      - ${PORT}:${PORT}    
+  db:
+    hostname: db
+    image: postgres:13
+    networks:
+      - mynet
+    restart: always
+    env_file:
+      - .env 
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
+networks:
+  mynet:
+    driver: bridge

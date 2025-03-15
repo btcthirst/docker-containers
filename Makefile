@@ -25,18 +25,18 @@ docker-clean:
 
 PHONY: updev
 updev:
-	GO_ENV=${GO_ENV_DEV} docker-compose up
+	GO_ENV=${GO_ENV_DEV} docker-compose up --build
 
 PHONY: uptest
 uptest:
-	GO_ENV=${GO_ENV_TEST} docker-compose up
+	GO_ENV=${GO_ENV_TEST} docker-compose up --build
 
-PHONY: upprod
-upprod:
-	GO_ENV=${GO_ENV_PROD} docker-compose up
+PHONY: up
+up:
+	GO_ENV=${GO_ENV} docker-compose up --build
 
 PHONY: down
 down:
 	docker-compose down --rmi all
 
-DEFAULT_GOAL := run
+DEFAULT_GOAL := down

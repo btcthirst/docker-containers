@@ -1,2 +1,9 @@
+# ENV files
 .env
+
+# bin files
 /bin
+
+# vscode files
+.vscode
+.vscode/

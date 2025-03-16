@@ -4,7 +4,7 @@ services:
     depends_on:
       - db  
     build:
-      dockerfile: Dockerfile.multistage
+      dockerfile: Dockerfile
       context: .
       target: ${GO_ENV}
     container_name: go-app

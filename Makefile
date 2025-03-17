@@ -33,7 +33,7 @@ uptest:
 
 PHONY: up
 up:
-	GO_ENV=${GO_ENV} docker-compose up --build
+	GO_ENV=${GO_ENV} docker-compose up
 
 PHONY: down
 down:

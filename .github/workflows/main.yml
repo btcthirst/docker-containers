@@ -18,7 +18,8 @@ jobs:
       - name: Run docker compose
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-          compose-file: docker-compose.yml
+          compose-file: "https://github.com/btcthirst/docker-containers/blob/main/docker-compose.yml"
+
 
       - name: Build and push
         uses: docker/build-push-action@v6
